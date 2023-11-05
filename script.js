@@ -50,17 +50,19 @@ function roundWinner (computerSelection, playerSelection) {
 
 
 
-function game () {
-    
-}
-
-
 function playRound () {
     let computerSelection = getComputerChoice()
     let playerSelection = getPlayerChoice()
-    roundWinner(computerSelection, playerSelection)
+    return roundWinner(computerSelection, playerSelection)
+}
+
+
+function game () {
+    for (i = 0; i < 5; i++) {
+        console.log(`${playRound()} this round`)
+    }
 }
 
 
 alert("Let's start the game!")
-console.log(`The computer chose ${computerChoice} the player chose ${playerChoice}`)
+game()
