@@ -26,8 +26,26 @@ function getPlayerChoice () {
 }
 
 
-function roundWinner (computerChoice, playerChoice) {
+function roundWinner (computerSelection, playerSelection) {
+    if (computerSelection === playerSelection) {
+        return "It's a tie" }
+    
+    else if (computerSelection === 'Rock' && playerSelection == 'Scissors') {
+        return "The computer won" }
 
+        else if (computerSelection === 'Rock' && playerSelection == 'Paper') {
+            return "The player won" }
+    
+    else if (computerSelection == 'Paper' && playerSelection == 'Rock') {
+        return "The computer won" }
+
+        else if (computerSelection == 'Paper' && playerSelection == 'Scissors') {
+            return "The player won" }
+    
+    else if (computerSelection == 'Scissors' && playerSelection == 'Paper') {
+        return "The computer won" }
+
+        else { return "The player won"}
 }
 
 
