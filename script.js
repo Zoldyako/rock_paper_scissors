@@ -18,7 +18,7 @@ function getComputerChoice () {
 }
 
 
-function playerSelection () {
+function getPlayerSelection () {
     let playerChoice = prompt("Choose your weapon! 1 for Rock | 2 for Paper | 3 for Scissors")
     playerChoice = isRockPaperOrScissors(playerChoice)
     
@@ -30,9 +30,10 @@ function playRound (computerSelection, playerSelection) {
     
 }
 
+alert("Let's start the game!")
 
 let computerChoice = getComputerChoice()
-let playerChoice = playerSelection()
+let playerChoice = getPlayerSelection()
 
 
 console.log(`The computer chose ${computerChoice} the player chose ${playerChoice}`)
