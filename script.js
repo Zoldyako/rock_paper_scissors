@@ -27,13 +27,10 @@ function getPlayerSelection () {
 
 
 function playRound (computerSelection, playerSelection) {
-    
+    let computerChoice = getComputerChoice()
+    let playerChoice = getPlayerSelection()
 }
 
+
 alert("Let's start the game!")
-
-let computerChoice = getComputerChoice()
-let playerChoice = getPlayerSelection()
-
-
 console.log(`The computer chose ${computerChoice} the player chose ${playerChoice}`)
