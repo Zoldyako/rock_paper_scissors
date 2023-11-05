@@ -18,9 +18,9 @@ function getComputerChoice () {
 }
 
 
-function getPlayerSelection () {
-    let playerChoice = prompt("Choose your weapon! 1 for Rock | 2 for Paper | 3 for Scissors")
-    playerChoice = isRockPaperOrScissors(playerChoice)
+function getPlayerChoice () {
+    let playerSelection = prompt("Choose your weapon! 1 for Rock | 2 for Paper | 3 for Scissors")
+    playerSelection = isRockPaperOrScissors(playerChoice)
     
     return playerChoice
 }
@@ -37,9 +37,9 @@ function game () {
 }
 
 
-function playRound (computerSelection, playerSelection) {
-    let computerChoice = getComputerChoice()
-    let playerChoice = getPlayerSelection()
+function playRound () {
+    let computerSelection = getComputerChoice()
+    let playerSelection = getPlayerChoice()
 }
 
 
