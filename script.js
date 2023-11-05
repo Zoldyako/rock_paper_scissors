@@ -2,7 +2,7 @@ function isRockPaperOrScissors(computerSelection) {
     if (computerSelection == 1) {
         return 'Rock' }
     
-    if (computerSelection == 2) {
+    else if (computerSelection == 2) {
         return 'Paper' }
     
     else {
@@ -23,6 +23,17 @@ function getPlayerSelection () {
     playerChoice = isRockPaperOrScissors(playerChoice)
     
     return playerChoice
+}
+
+
+function roundWinner (computerChoice, playerChoice) {
+
+}
+
+
+
+function game () {
+
 }
 
 
