@@ -1,12 +1,15 @@
 function isRockPaperOrScissors(computerSelection) {
     if (computerSelection == 1) {
-        return 'Rock' }
+        return 'Rock' 
+    }
     
     else if (computerSelection == 2) {
-        return 'Paper' }
+        return 'Paper' 
+    }
     
     else {
-        return 'Scissors' }
+        return 'Scissors' 
+    }
 }
 
 
@@ -52,24 +55,25 @@ function roundWinner (computerSelection, playerSelection) {
 
         else { 
             managePoints(playerPoints += 1)
-            return `C: ${computerSelection} VS P: ${playerSelection} | The player won!`}
+            return `C: ${computerSelection} VS P: ${playerSelection} | The player won!` }
 }
 
 
 function managePoints (computerPoints = 0, playerPoints = 0) {
-    return computerPoints += computerPoints, playerPoints += playerPoints
+    computerPoints += computerPoints, playerPoints += playerPoints
 }
 
 
 function gameWinner(computerPoints, playerPoints) {
     if (computerPoints > 2 || playerPoints > 2) {
         if (computerPoints > 2 && computerPoints > playerPoints) {
-            return "Computer won!" } 
+            return "Computer won!" 
+        } 
         
         else if (playerPoints > computerPoints) {
             return "Player won!"
         }
-    } 
+    } else {return}
 }
 
 
@@ -81,9 +85,43 @@ function playRound () {
 
 
 function game () {
-    for (i = 0; i < 5; i++) {
+    let keepGooing = true
+    let round = 1
+
+    while (keepGooing == true) {
+        
         console.log(playRound())
-        console.log(`Round ${i+1} the player have ${playerPoints} point! the computer have ${computerPoints} point!`) }
+        console.log(`Round ${round} the player have ${playerPoints} points! the computer have ${computerPoints} points!`)
+        console.log(" ")
+
+        if (round == 5 && computerPoints < 3 && playerPoints < 3 ) { 
+            if (computerPoints > playerPoints) {
+                    console.log(`The computer won the match with ${computerPoints} points!`), keepGooing = false
+            } 
+
+            else if (playerPoints > computerPoints) {
+                    console.log(`The player won the match with ${playerPoints} points!`), keepGooing = false
+            }
+
+            else if (playerPoints == computerPoints) {
+                    console.log(`The match ended in an tie!`), keepGooing = false
+            }
+        }
+
+        if (computerPoints == 3 || playerPoints == 3) {
+            if (computerPoints > 2 && computerPoints > playerPoints) {
+                console.log("The computer won the match!")  
+                keepGooing = false
+            }
+            
+            else if (playerPoints == 3 && playerPoints > computerPoints) {
+                console.log("The player won the match!")
+                keepGooing = false 
+            }
+        }
+
+        round += 1  
+    }
 }
 
 let playerPoints = 0, computerPoints = 0
