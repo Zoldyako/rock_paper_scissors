@@ -27,25 +27,37 @@ function getPlayerChoice () {
 
 
 function roundWinner (computerSelection, playerSelection) {
-    if (computerSelection === playerSelection) {
-        return "It's a tie" }
+    if (computerSelection == playerSelection) {
+        return`C: ${computerSelection} VS P: ${playerSelection} | It is a tie!` }
     
-    else if (computerSelection === 'Rock' && playerSelection == 'Scissors') {
-        return "The computer won" }
+    else if (computerSelection == 'Rock' && playerSelection == 'Scissors') {
+            managePoints(computerPoints += 1)
+            return `C: ${computerSelection} VS P: ${playerSelection} | The computer won!` }
 
-        else if (computerSelection === 'Rock' && playerSelection == 'Paper') {
-            return "The player won" }
+        else if (computerSelection == 'Rock' && playerSelection == 'Paper') {
+            managePoints(playerPoints += 1)
+            return `C: ${computerSelection} VS P: ${playerSelection} | The player won!` }
     
     else if (computerSelection == 'Paper' && playerSelection == 'Rock') {
-        return "The computer won" }
+        managePoints(computerPoints += 1) 
+        return `C: ${computerSelection} VS P: ${playerSelection} | The computer won!` }
 
         else if (computerSelection == 'Paper' && playerSelection == 'Scissors') {
-            return "The player won" }
+            managePoints(playerPoints += 1)
+            return `C: ${computerSelection} VS P: ${playerSelection} | The player won!` }
     
     else if (computerSelection == 'Scissors' && playerSelection == 'Paper') {
-        return "The computer won" }
+        managePoints(computerPoints += 1)
+        return `C: ${computerSelection} VS P: ${playerSelection} | The computer won!` }
 
-        else { return "The player won"}
+        else { 
+            managePoints(playerPoints += 1)
+            return `C: ${computerSelection} VS P: ${playerSelection} | The player won!`}
+}
+
+
+function managePoints (computerPoints = 0, playerPoints = 0) {
+    return computerPoints += computerPoints, playerPoints += playerPoints
 }
 
 
@@ -70,9 +82,10 @@ function playRound () {
 
 function game () {
     for (i = 0; i < 5; i++) {
-        console.log(`${playRound()} this round`) }
+        console.log(playRound())
+        console.log(`Round ${i+1} the player have ${playerPoints} point! the computer have ${computerPoints} point!`) }
 }
 
-
+let playerPoints = 0, computerPoints = 0
 alert("Let's start the game!")
 game()
