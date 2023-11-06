@@ -49,6 +49,17 @@ function roundWinner (computerSelection, playerSelection) {
 }
 
 
+function gameWinner(computerPoints, playerPoints) {
+    if (computerPoints > 2 || playerPoints > 2) {
+        if (computerPoints > 2 && computerPoints > playerPoints) {
+            return "Computer won!" } 
+        
+        else if (playerPoints > computerPoints) {
+            return "Player won!"
+        }
+    } 
+}
+
 
 function playRound () {
     let computerSelection = getComputerChoice()
@@ -59,8 +70,7 @@ function playRound () {
 
 function game () {
     for (i = 0; i < 5; i++) {
-        console.log(`${playRound()} this round`)
-    }
+        console.log(`${playRound()} this round`) }
 }
 
 
