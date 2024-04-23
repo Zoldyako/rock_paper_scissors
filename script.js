@@ -1,3 +1,4 @@
+//Transforms the number input of the player into 'rock', 'paper' or 'scissors'
 function isRockPaperOrScissors(computerSelection) {
     if (computerSelection == 1) {
         return 'Rock' 
@@ -12,7 +13,8 @@ function isRockPaperOrScissors(computerSelection) {
     }
 }
 
-
+//Generates a number between 1 - 3 for the computer then calls isRockPaperOrScissors
+//to transform the random number into 'rock', 'paper' or 'scissors'
 function getComputerChoice () {
     let computerSelection = Math.floor(Math.random() * 3) + 1
     computerSelection = isRockPaperOrScissors(computerSelection)
@@ -21,6 +23,7 @@ function getComputerChoice () {
 }
 
 
+// Prompts the user for their choice
 function getPlayerChoice () {
     let playerSelection = prompt("Choose your weapon! 1 for Rock | 2 for Paper | 3 for Scissors")
     playerSelection = isRockPaperOrScissors(playerSelection)
@@ -94,6 +97,7 @@ function game () {
         console.log(`Round ${round} the player have ${playerPoints} points! the computer have ${computerPoints} points!`)
         console.log(" ")
 
+        /* 
         if (round == 5 && computerPoints < 3 && playerPoints < 3 ) { 
             if (computerPoints > playerPoints) {
                     console.log(`The computer won the match with ${computerPoints} points!`), keepGooing = false
@@ -120,10 +124,11 @@ function game () {
             }
         }
 
+        */
         round += 1  
     }
 }
 
 let playerPoints = 0, computerPoints = 0
-alert("Let's start the game!")
-game()
+//alert("Let's start the game!")
+//game()

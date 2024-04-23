@@ -1,3 +1,24 @@
 body {
     background-color: black;
 }
+
+#btns {
+    width: 150px;
+    display: flexbox;
+    margin: auto;
+}
+
+button {
+    background-color: rgb(255, 208, 55);
+    border: 2px solid rgb(211, 128, 4);
+    border-radius: 8px;
+    margin: 8px;
+    height: 60px;
+    width: 150px;
+    font: bold 14pt 'inter';
+    color: rgb(0, 0, 0);
+}
+
+button:hover {
+    box-shadow: 0px 0px 20px 0px rgba(252, 193, 0, 0.877);
+}
