@@ -15,10 +15,15 @@ button {
     margin: 8px;
     height: 60px;
     width: 150px;
-    font: bold 14pt 'inter';
+    font: bold 14pt 'sans';
     color: rgb(0, 0, 0);
 }
 
 button:hover {
     box-shadow: 0px 0px 20px 0px rgba(252, 193, 0, 0.877);
+}
+
+button:active {
+    background-color: rgb(233, 183, 20);
+    color: rgb(75, 57, 0);
 }
