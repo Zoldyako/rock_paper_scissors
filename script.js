@@ -1,91 +1,107 @@
-function generate_computer_choice() {
-    let computer_choice = Math.floor(Math.random() * 3) + 1
-    return computer_choice
-}
+document.addEventListener('DOMContentLoaded', function() {
+    let player_points = 0, computer_points = 0, rounds = 0
 
 
-function get_player_choice() {
-    let player_choice = prompt("[1] Rock | [2] Paper | [3] Scissors")
-
-    if (player_choice < 1 || player_choice > 3 || isNaN(player_choice)) {
-        console.log("Invalid choice, please choose a number between 1 - 3")
-        return get_player_choice()
-    } 
-
-    return parseInt(player_choice)
-}
+    function generate_computer_choice() {
+        let computer_choice = Math.floor(Math.random() * 3) + 1
+        return computer_choice
+    }
 
 
-function round_winner(computer_choice, player_choice) {
-    
-    if (computer_choice == player_choice) {
-        console.log("It's a tie")
-    } 
-    
-    else if (
-        (computer_choice == 1 && player_choice == 3) ||
-        (computer_choice == 2 && player_choice == 1) ||
-        (computer_choice == 3 && player_choice == 2) 
-    ) {
-        computer_points++
-        console.log("Computer wins")
-    } 
-    
-    else {
-        player_points++
-        console.log("Player wins")
-    } 
-}
+    function get_player_choice() {
+        let player_choice = prompt("[1] Rock | [2] Paper | [3] Scissors")
+
+        if (player_choice < 1 || player_choice > 3 || isNaN(player_choice)) {
+            console.log("Invalid choice, please choose a number between 1 - 3")
+            return get_player_choice()
+        } 
+
+        return parseInt(player_choice)
+    }
 
 
-function play_round() {
-    let computer_choice = generate_computer_choice()
-    let player_choice = get_player_choice()
-
-    round_winner(computer_choice, player_choice)
-}
-
-
-function game() {
-
-    let keep_going = true
-    let round = 1
-
-
-    console.log("Lets start the game!!")
-    console.log("---------------------")
-
-    while(keep_going) {
-
-        console.log(`=== Round ${round} ===`)
-        console.log("----------------------")
-
-        play_round()
-        round += 1
+    function round_winner(computer_choice, player_choice, div_score) {
         
-        console.log(`Computer points: ${computer_points} || Player points: ${player_points}`)
 
-        answer = prompt("Do you want to continue? [Y/N]: ")
-        if (answer.toUpperCase() !== "Y") {
-            keep_going = false
+
+        if (computer_choice == player_choice) {
+            div_score.innerHTML += "It's a tie<br>"
+        
+        } else if (
+            (computer_choice == 1 && player_choice == 3) ||
+            (computer_choice == 2 && player_choice == 1) ||
+            (computer_choice == 3 && player_choice == 2) 
+        ){
+            computer_points++
+            console.log("C: " + computer_points)
+            div_score.innerHTML += "Computer wins<br>"
+        
+        } else {
+            player_points++
+            console.log("P: " + player_points)
+            div_score.innerHTML += "Player wins<br>"
+        } 
+    }
+
+
+    function play_round(player_choice, div_results) {
+
+        if (rounds >= 5) {
+
+            if (computer_points == player_points) {
+                div_results.textContent = `The game ended in a tie! | C: ${computer_points} - P: ${player_points}`
+            
+            } else if (computer_points > player_points) {
+                div_results.textContent = `The computer won the game | C: ${computer_points} - P: ${player_points}` 
+            
+            } else {
+                div_results.textContent = `The player won the game | C: ${computer_points} - P: ${player_points}`
+            }
         }
-        
+
+        else {
+            let computer_choice = generate_computer_choice()
+            //let player_choice = get_player_choice()
+
+            round_winner(computer_choice, player_choice, div_score)
+            rounds++
+        }
     }
 
 
-    if (computer_points == player_points) {
-        console.log("Both players have the same amount of points")
-    }
+    const btn_rock = document.getElementById('rock')
+    const btn_paper = document.getElementById('paper')
+    const btn_scissors = document.getElementById('scissors')
+    const btn_restart = document.getElementById('restart')
 
-    else if (computer_points > player_points) {
-        console.log("The computer won")
-    }
-
-    else {
-        console.log("The player won")
-    }
-}
+    const div_results = document.getElementById('results')
+    const div_score = document.getElementById('score')
 
 
-let player_points = 0, computer_points = 0
-game()
+    btn_rock.addEventListener('click', () => {
+        play_round(1, div_results)
+    })
+
+    btn_paper.addEventListener('click', () => {
+        play_round(2, div_results)
+    })
+
+    btn_scissors.addEventListener('click', () => {
+        play_round(3, div_results)
+    })
+
+    btn_restart.addEventListener('click', () => {
+        div_results.textContent = " "
+        div_score.innerHTML = " "
+        computer_points = 0
+        player_points = 0
+        rounds = 0
+    })
+
+
+
+    
+
+    
+});
+

@@ -6,6 +6,7 @@ body {
     width: 150px;
     display: flexbox;
     margin: auto;
+    margin-top: 15%;
 }
 
 button {
@@ -26,4 +27,8 @@ button:hover {
 button:active {
     background-color: rgb(233, 183, 20);
     color: rgb(75, 57, 0);
+}
+
+#score, #results {
+    color: whitesmoke;
 }
