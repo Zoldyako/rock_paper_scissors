@@ -1,134 +1,91 @@
-//Transforms the number input of the player into 'rock', 'paper' or 'scissors'
-function isRockPaperOrScissors(computerSelection) {
-    if (computerSelection == 1) {
-        return 'Rock' 
-    }
+function generate_computer_choice() {
+    let computer_choice = Math.floor(Math.random() * 3) + 1
+    return computer_choice
+}
+
+
+function get_player_choice() {
+    let player_choice = prompt("[1] Rock | [2] Paper | [3] Scissors")
+
+    if (player_choice < 1 || player_choice > 3 || isNaN(player_choice)) {
+        console.log("Invalid choice, please choose a number between 1 - 3")
+        return get_player_choice()
+    } 
+
+    return parseInt(player_choice)
+}
+
+
+function round_winner(computer_choice, player_choice) {
     
-    else if (computerSelection == 2) {
-        return 'Paper' 
-    }
+    if (computer_choice == player_choice) {
+        console.log("It's a tie")
+    } 
+    
+    else if (
+        (computer_choice == 1 && player_choice == 3) ||
+        (computer_choice == 2 && player_choice == 1) ||
+        (computer_choice == 3 && player_choice == 2) 
+    ) {
+        computer_points++
+        console.log("Computer wins")
+    } 
     
     else {
-        return 'Scissors' 
-    }
-}
-
-//Generates a number between 1 - 3 for the computer then calls isRockPaperOrScissors
-//to transform the random number into 'rock', 'paper' or 'scissors'
-function getComputerChoice () {
-    let computerSelection = Math.floor(Math.random() * 3) + 1
-    computerSelection = isRockPaperOrScissors(computerSelection)
-
-    return computerSelection
+        player_points++
+        console.log("Player wins")
+    } 
 }
 
 
-// Prompts the user for their choice
-function getPlayerChoice () {
-    let playerSelection = prompt("Choose your weapon! 1 for Rock | 2 for Paper | 3 for Scissors")
-    playerSelection = isRockPaperOrScissors(playerSelection)
-    
-    return playerSelection
+function play_round() {
+    let computer_choice = generate_computer_choice()
+    let player_choice = get_player_choice()
+
+    round_winner(computer_choice, player_choice)
 }
 
 
-function roundWinner (computerSelection, playerSelection) {
-    if (computerSelection == playerSelection) {
-        return`C: ${computerSelection} VS P: ${playerSelection} | It is a tie!` }
-    
-    else if (computerSelection == 'Rock' && playerSelection == 'Scissors') {
-            managePoints(computerPoints += 1)
-            return `C: ${computerSelection} VS P: ${playerSelection} | The computer won!` }
+function game() {
 
-        else if (computerSelection == 'Rock' && playerSelection == 'Paper') {
-            managePoints(playerPoints += 1)
-            return `C: ${computerSelection} VS P: ${playerSelection} | The player won!` }
-    
-    else if (computerSelection == 'Paper' && playerSelection == 'Rock') {
-        managePoints(computerPoints += 1) 
-        return `C: ${computerSelection} VS P: ${playerSelection} | The computer won!` }
-
-        else if (computerSelection == 'Paper' && playerSelection == 'Scissors') {
-            managePoints(playerPoints += 1)
-            return `C: ${computerSelection} VS P: ${playerSelection} | The player won!` }
-    
-    else if (computerSelection == 'Scissors' && playerSelection == 'Paper') {
-        managePoints(computerPoints += 1)
-        return `C: ${computerSelection} VS P: ${playerSelection} | The computer won!` }
-
-        else { 
-            managePoints(playerPoints += 1)
-            return `C: ${computerSelection} VS P: ${playerSelection} | The player won!` }
-}
-
-
-function managePoints (computerPoints = 0, playerPoints = 0) {
-    computerPoints += computerPoints, playerPoints += playerPoints
-}
-
-
-function gameWinner(computerPoints, playerPoints) {
-    if (computerPoints > 2 || playerPoints > 2) {
-        if (computerPoints > 2 && computerPoints > playerPoints) {
-            return "Computer won!" 
-        } 
-        
-        else if (playerPoints > computerPoints) {
-            return "Player won!"
-        }
-    } else {return}
-}
-
-
-function playRound () {
-    let computerSelection = getComputerChoice()
-    let playerSelection = getPlayerChoice()
-    return roundWinner(computerSelection, playerSelection)
-}
-
-
-function game () {
-    let keepGooing = true
+    let keep_going = true
     let round = 1
 
-    while (keepGooing == true) {
+
+    console.log("Lets start the game!!")
+    console.log("---------------------")
+
+    while(keep_going) {
+
+        console.log(`=== Round ${round} ===`)
+        console.log("----------------------")
+
+        play_round()
+        round += 1
         
-        console.log(playRound())
-        console.log(`Round ${round} the player have ${playerPoints} points! the computer have ${computerPoints} points!`)
-        console.log(" ")
+        console.log(`Computer points: ${computer_points} || Player points: ${player_points}`)
 
-        /* 
-        if (round == 5 && computerPoints < 3 && playerPoints < 3 ) { 
-            if (computerPoints > playerPoints) {
-                    console.log(`The computer won the match with ${computerPoints} points!`), keepGooing = false
-            } 
-
-            else if (playerPoints > computerPoints) {
-                    console.log(`The player won the match with ${playerPoints} points!`), keepGooing = false
-            }
-
-            else if (playerPoints == computerPoints) {
-                    console.log(`The match ended in an tie!`), keepGooing = false
-            }
+        answer = prompt("Do you want to continue? [Y/N]: ")
+        if (answer.toUpperCase() !== "Y") {
+            keep_going = false
         }
+        
+    }
 
-        if (computerPoints == 3 || playerPoints == 3) {
-            if (computerPoints > 2 && computerPoints > playerPoints) {
-                console.log("The computer won the match!")  
-                keepGooing = false
-            }
-            
-            else if (playerPoints == 3 && playerPoints > computerPoints) {
-                console.log("The player won the match!")
-                keepGooing = false 
-            }
-        }
 
-        */
-        round += 1  
+    if (computer_points == player_points) {
+        console.log("Both players have the same amount of points")
+    }
+
+    else if (computer_points > player_points) {
+        console.log("The computer won")
+    }
+
+    else {
+        console.log("The player won")
     }
 }
 
-let playerPoints = 0, computerPoints = 0
-//alert("Let's start the game!")
-//game()
+
+let player_points = 0, computer_points = 0
+game()
